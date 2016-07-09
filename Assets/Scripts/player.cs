@@ -5,28 +5,51 @@ public class player : MonoBehaviour {
 
 	public	Rigidbody2D	rbPlayer;
 	public	float 		speed;
+    public  float       speedRunning;
 	public	float 		movimentoX;
+
+    public  bool        isJumping;
+    public  int         jumpForce;
 
 	public	bool 		facingRight;
 
 	// Use this for initialization
 	void Start () {
-	
-	}
+        isJumping = false;
+        jumpForce = 20;
+
+        speed = 6;
+        speedRunning = 10;
+    }
 	
 	// Update is called once per frame
 	void Update () {
-
-		movimentoX = Input.GetAxisRaw ("Horizontal");
-		rbPlayer.velocity = new Vector2 (movimentoX * speed, rbPlayer.velocity.y);
-
-		if (movimentoX > 0 && !facingRight) {
-			Flip ();
-		} else if(movimentoX < 0 && facingRight){
-			Flip ();
-		}
+        keyBoardCalls();
 
 	}
+
+    void keyBoardCalls()
+    {
+        movimentoX = Input.GetAxisRaw("Horizontal");
+
+        if(Input.GetKey(KeyCode.LeftShift))
+            rbPlayer.velocity = new Vector2(movimentoX * speedRunning, rbPlayer.velocity.y);
+        else
+            rbPlayer.velocity = new Vector2(movimentoX * speed, rbPlayer.velocity.y);
+
+
+        if (movimentoX > 0 && !facingRight)
+        {
+            Flip();
+        }
+        else if (movimentoX < 0 && facingRight)
+        {
+            Flip();
+        }
+
+        if (Input.GetKey(KeyCode.Space) && !isJumping)
+            jump();
+    }
 
 	void Flip(){
 
@@ -36,18 +59,20 @@ public class player : MonoBehaviour {
 		transform.localScale = theScale;
 	}
 
-	/*
+    void jump() {
+        rbPlayer.velocity = new Vector2(0, jumpForce);
+        isJumping = true;
+    }
+
+	
 	void OnCollisionEnter2D(Collision2D col){
 
-		switch (col.gameObject.tag){
-
-		case "Plataforma":
-			transform.parent = col.gameObject.transform;
-			Debug.Log ("Dentro");
-			break;
-		}
+		if(col.gameObject.tag == "Ground"){
+            isJumping = false;
+        }
 	}
 
+    /*
 	void OnCollisionExit2D(Collision2D col){
 
 		switch (col.gameObject.tag){
