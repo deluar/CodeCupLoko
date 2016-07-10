@@ -10,6 +10,9 @@ public class player : MonoBehaviour {
 
     public  bool        isJumping;
     public  int         jumpForce;
+    public  bool        isGrounded;
+
+    public bool         parede;
 
     //public  bool        onPlataform;
     //public  Vector2     plataformLastPosition;
@@ -37,22 +40,27 @@ public class player : MonoBehaviour {
     {
         movimentoX = Input.GetAxisRaw("Horizontal");
 
-        if(Input.GetKey(KeyCode.LeftShift))
-            rbPlayer.velocity = new Vector2(movimentoX * speedRunning, rbPlayer.velocity.y);
-        else
-            rbPlayer.velocity = new Vector2(movimentoX * speed, rbPlayer.velocity.y);
+        if (Input.GetKey(KeyCode.LeftShift)){
+            if(!parede){
+                rbPlayer.velocity = new Vector2(movimentoX * speedRunning, rbPlayer.velocity.y);
+            }
+        }
+        else{
+            if (!parede) {
+                rbPlayer.velocity = new Vector2(movimentoX * speed, rbPlayer.velocity.y);
+            }   
+        }
+            
 
 
-        if (movimentoX > 0 && !facingRight)
-        {
+        if (movimentoX > 0 && !facingRight){
             Flip();
         }
-        else if (movimentoX < 0 && facingRight)
-        {
+        else if (movimentoX < 0 && facingRight){
             Flip();
         }
 
-        if ((Input.GetKey(KeyCode.Space) || (Input.GetAxisRaw("Vertical") > 0)) && !isJumping)
+        if ((Input.GetKey(KeyCode.Space) || (Input.GetAxisRaw("Vertical") > 0)) && !isJumping && isGrounded)
             jump();
     }
 
@@ -85,7 +93,17 @@ public class player : MonoBehaviour {
 
     }
 
-    //void onTriggerStay2D(Collider2D col){
+    void OnTriggerStay2D(Collider2D col){
+
+        if (!col.isTrigger && col.gameObject.tag != "Parede")
+        {
+            parede = true;
+        }
+
+        if(col.gameObject.tag == "Ground"){
+            isGrounded = true;
+        }
+
     //    if (col.gameObject.tag == "Plataforma")
     //    {
     //        int newX = (int)(rbPlayer.transform.position.x + (col.transform.position.x - plataformLastPosition.x));
@@ -103,10 +121,20 @@ public class player : MonoBehaviour {
     //        print("Inc Y = " + incY);
     //        print(incX);
     //    }
-    //}
+    }
 
     void OnTriggerExit2D(Collider2D col)
     {
+
+        if (!col.isTrigger && col.gameObject.tag != "Parede")
+        {
+            parede = false;
+        }
+
+        if(col.gameObject.tag == "Ground")
+        {
+            isGrounded = false;
+        }
         //if (col.gameObject.tag == "Plataforma")
         //{
         //    //rbPlayer.transform.parent = null;

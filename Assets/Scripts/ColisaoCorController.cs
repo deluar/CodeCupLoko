@@ -7,9 +7,11 @@ public class ColisaoCorController : MonoBehaviour {
 	private fundo fundo;
 	private Rigidbody2D rigidBody;
 	public GameObject	colisor;
+    public player player;
 
-	void Start () {
+    void Start () {
 		fundo = FindObjectOfType (typeof(fundo)) as fundo;
+        player = FindObjectOfType(typeof(player)) as player;
 //		rigidBody = GetComponent<Rigidbody2D>();
 //		rigidBody.collisionDetectionMode = CollisionDetectionMode2D.Discrete;
 	}
@@ -19,6 +21,7 @@ public class ColisaoCorController : MonoBehaviour {
 
 		if ((branco && fundo.padrao) || (!branco && !fundo.padrao)) {
 			colisor.SetActive (false);
+            player.parede = false;
 //			rigidBody.isKinematic = false;
 //			rigidBody.collisionDetectionMode = CollisionDetectionMode2D.Discrete;
 
@@ -30,4 +33,19 @@ public class ColisaoCorController : MonoBehaviour {
 		}
 		
 	}
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Personagem")
+        {
+            player.parede = false;
+        }
+        //else if (col.gameObject.tag == "Plataforma")
+        //{
+        //    //rbPlayer.transform.parent = col.transform;
+        //    onPlataform = true;
+        //    plataformLastPosition = col.transform.position;
+        //    print("3");
+        //}
+
+    }
 }
