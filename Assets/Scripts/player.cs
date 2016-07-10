@@ -14,17 +14,12 @@ public class player : MonoBehaviour {
 
     public bool         parede;
 
-    //public  bool        onPlataform;
-    //public  Vector2     plataformLastPosition;
-
 	public	bool 		facingRight;
 
 	// Use this for initialization
 	void Start () {
         isJumping = false;
         jumpForce = 20;
-
-        //onPlataform = false;
         
         speed = 6;
         speedRunning = 10;
@@ -83,13 +78,6 @@ public class player : MonoBehaviour {
             isJumping = false;
             print("2");
         }
-        //else if (col.gameObject.tag == "Plataforma")
-        //{
-        //    //rbPlayer.transform.parent = col.transform;
-        //    onPlataform = true;
-        //    plataformLastPosition = col.transform.position;
-        //    print("3");
-        //}
 
     }
 
@@ -103,24 +91,6 @@ public class player : MonoBehaviour {
         if(col.gameObject.tag == "Ground"){
             isGrounded = true;
         }
-
-    //    if (col.gameObject.tag == "Plataforma")
-    //    {
-    //        int newX = (int)(rbPlayer.transform.position.x + (col.transform.position.x - plataformLastPosition.x));
-    //        int newY = (int)(rbPlayer.transform.position.y + (col.transform.position.y - plataformLastPosition.y));
-    //
-    //        int incX = (int)(col.transform.position.x - plataformLastPosition.x);
-    //        int incY = (int)(col.transform.position.y - plataformLastPosition.y);
-    //
-    //        //rbPlayer.transform.position = new Vector2(newX, newY);
-    //        rbPlayer.velocity = new Vector2(incX, incY);
-    //
-    //        plataformLastPosition = col.transform.position;
-    //        print("4");
-    //        print("Inc X = " + incX);
-    //        print("Inc Y = " + incY);
-    //        print(incX);
-    //    }
     }
 
     void OnTriggerExit2D(Collider2D col)
@@ -135,24 +105,5 @@ public class player : MonoBehaviour {
         {
             isGrounded = false;
         }
-        //if (col.gameObject.tag == "Plataforma")
-        //{
-        //    //rbPlayer.transform.parent = null;
-        //    onPlataform = false;
-        //    print("5");
-        //}
     }
-
-    /*
-	void OnCollisionExit2D(Collision2D col){
-
-		switch (col.gameObject.tag){
-
-		case "Plataforma":
-			transform.parent = null;
-			Debug.Log ("Fora");
-			break;
-		}
-	}
-	*/
 }
