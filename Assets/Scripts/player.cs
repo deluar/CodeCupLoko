@@ -74,15 +74,16 @@ public class player : MonoBehaviour {
     }
 
 	void Flip(){
-        gameObject.transform.Rotate(new Vector3(0, 180, 0));
-		facingRight = !facingRight;
+        //gameObject.transform.Rotate(new Vector3(0, 180, 0));
+
+        facingRight = !facingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
 	}
 
     void jump() {
         rbPlayer.velocity = new Vector2(0, jumpForce);
-        //Vector3 theScale = transform.localScale;
-        //theScale.x *= -1;
-        //transform.localScale = theScale;
         isJumping = true;
     }
 
