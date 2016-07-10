@@ -11,6 +11,7 @@ public class player : MonoBehaviour {
     public  bool        isJumping;
     public  int         jumpForce;
     public  bool        isGrounded;
+    public bool collideWithWallOnRightSide;
 
     public bool         parede;
 
@@ -23,6 +24,8 @@ public class player : MonoBehaviour {
         
         speed = 6;
         speedRunning = 10;
+
+        collideWithWallOnRightSide = false;
     }
 	
 	// Update is called once per frame
@@ -34,6 +37,14 @@ public class player : MonoBehaviour {
     void keyBoardCalls()
     {
         movimentoX = Input.GetAxisRaw("Horizontal");
+
+        //se ele tiver controlando pelo W, A, S, D
+        if(movimentoX == 0){
+            if (Input.GetKey(KeyCode.A))
+                movimentoX = -1;
+            else if (Input.GetKey(KeyCode.D))
+                movimentoX = 1;
+        }
 
         if (Input.GetKey(KeyCode.LeftShift) || (Input.GetKey(KeyCode.Z))){
             if(!parede){
@@ -57,14 +68,14 @@ public class player : MonoBehaviour {
 
         if ((Input.GetKey(KeyCode.Space) || (Input.GetAxisRaw("Vertical") > 0)) && !isJumping && isGrounded)
             jump();
+
+        if ((collideWithWallOnRightSide && !facingRight) || (!collideWithWallOnRightSide && facingRight))
+            parede = false;
     }
 
 	void Flip(){
-
+        gameObject.transform.Rotate(new Vector3(0, 180, 0));
 		facingRight = !facingRight;
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
 	}
 
     void jump() {
@@ -79,17 +90,21 @@ public class player : MonoBehaviour {
             print("2");
         }
 
+        if(!col.isTrigger && col.gameObject.tag == "Parede"){
+            parede = true;
+        }
     }
 
     void OnTriggerStay2D(Collider2D col){
-
-        if (!col.isTrigger && col.gameObject.tag != "Parede")
-        {
-            parede = true;
-        }
-
         if(col.gameObject.tag == "Ground"){
             isGrounded = true;
+            collideWithWallOnRightSide = facingRight;
+        }
+
+        if (!col.isTrigger && col.gameObject.tag == "Parede")
+        {
+            parede = true;
+            collideWithWallOnRightSide = facingRight;
         }
     }
 

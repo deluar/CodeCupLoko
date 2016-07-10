@@ -21,7 +21,7 @@ public class ColisaoCorController : MonoBehaviour {
 
 		if ((branco && fundo.padrao) || (!branco && !fundo.padrao)) {
 			colisor.SetActive (false);
-            player.parede = false;
+            //player.parede = false;
 //			rigidBody.isKinematic = false;
 //			rigidBody.collisionDetectionMode = CollisionDetectionMode2D.Discrete;
 
