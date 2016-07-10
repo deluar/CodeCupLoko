@@ -48,7 +48,7 @@ public class movePlataforma : MonoBehaviour {
 	IEnumerator espere(){
 		float aux = velocidade;
 		velocidade = 0;
-		yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (1);
 		velocidade = aux;
 	}
 }
