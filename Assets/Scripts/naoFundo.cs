@@ -20,22 +20,11 @@ public class naoFundo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
+		padraoOposto = !fundo.padrao;
 
-		if (fundo.padrao) {
-			padraoOposto = false;
-		}
-		else {
-			padraoOposto = true;
-		}
-
-		if (padraoOposto) {
-			preto.SetActive (false);
-			branco.SetActive (true);
-		}
-		else {
-			preto.SetActive (true);
-			branco.SetActive (false);
-		}
+		preto.SetActive (!padraoOposto);
+		branco.SetActive (padraoOposto);
 	
 	}
 }

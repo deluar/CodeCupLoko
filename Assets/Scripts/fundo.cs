@@ -11,23 +11,16 @@ public class fundo : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		preto.SetActive (false);
-		branco.SetActive (true);
+//		preto.SetActive (false);
+//		branco.SetActive (true);
 		padrao = true;
-	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (!padrao) {
-			preto.SetActive (true);
-			branco.SetActive (false);
-		} 
-		else {
-			preto.SetActive (false);
-			branco.SetActive (true);
-		}
+		preto.SetActive (!padrao);
+		branco.SetActive (padrao);
 
 		if (Input.GetKeyDown (KeyCode.X)) {
 			padrao = !padrao;
