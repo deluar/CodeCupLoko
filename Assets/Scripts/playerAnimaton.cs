@@ -6,6 +6,7 @@ public class playerAnimaton : MonoBehaviour {
 	public	Animator	anime;
 	private	player 		player;
 	private	bool 		walk;
+    private bool        isJumping;
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +18,8 @@ public class playerAnimaton : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        isJumping = player.isJumping;
+
 		if(player.movimentoX != 0){
 			walk = true;
 		}
@@ -25,6 +28,7 @@ public class playerAnimaton : MonoBehaviour {
 		}
 
 		anime.SetBool ("walk", walk);
+        anime.SetBool("isJumping", isJumping);
 	
 	}
 }
