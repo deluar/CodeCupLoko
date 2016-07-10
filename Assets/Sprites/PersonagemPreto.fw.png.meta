@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e5cbe4f6806b8614c9cc90e403dce72f
-timeCreated: 1461419384
+timeCreated: 1468140351
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -59,129 +59,116 @@ TextureImporter:
     - name: PersonagemPreto.fw_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 512
-        width: 256
-        height: 256
+        x: 60
+        y: 514
+        width: 135
+        height: 233
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 69, y: 237}
-        - {x: -70, y: 237}
-        - {x: -70, y: 140}
-        - {x: -68, y: 138}
-        - {x: -52, y: 132}
-        - {x: -48, y: 0}
-        - {x: 39, y: 0}
-        - {x: 69, y: 139}
+      - - {x: 67.5, y: 133}
+        - {x: 67.5, y: 233}
+        - {x: -67.5, y: 233}
+        - {x: -67.5, y: 136}
+        - {x: -51.5, y: 130}
+        - {x: -44.5, y: 0}
+        - {x: 39.5, y: 0}
     - name: PersonagemPreto.fw_1
       rect:
         serializedVersion: 2
-        x: 256
-        y: 512
-        width: 256
-        height: 256
+        x: 319
+        y: 514
+        width: 135
+        height: 233
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -67, y: 237}
-        - {x: -67, y: 140}
-        - {x: -65, y: 138}
-        - {x: -43, y: 53}
-        - {x: -41, y: 51}
-        - {x: -23, y: 2}
-        - {x: -21, y: 0}
-        - {x: 31, y: 0}
-        - {x: 61, y: 49}
-        - {x: 72, y: 134}
-        - {x: 72, y: 237}
+      - - {x: 60.5, y: 46}
+        - {x: 67.5, y: 127}
+        - {x: 67.5, y: 233}
+        - {x: -67.5, y: 233}
+        - {x: -67.5, y: 128}
+        - {x: -44.5, y: 47}
+        - {x: -25.5, y: 0}
+        - {x: 26.5, y: 0}
     - name: PersonagemPreto.fw_2
       rect:
         serializedVersion: 2
-        x: 512
-        y: 512
-        width: 256
-        height: 256
+        x: 570
+        y: 514
+        width: 135
+        height: 233
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -72, y: 237}
-        - {x: -72, y: 140}
-        - {x: -70, y: 138}
-        - {x: -48, y: 53}
-        - {x: -46, y: 51}
-        - {x: -19, y: 2}
-        - {x: -17, y: 0}
-        - {x: 19, y: 0}
-        - {x: 57, y: 47}
-        - {x: 67, y: 134}
-        - {x: 67, y: 237}
+      - - {x: -67.5, y: 233}
+        - {x: -67.5, y: 134}
+        - {x: -45.5, y: 51}
+        - {x: -43.5, y: 49}
+        - {x: -16.5, y: 0}
+        - {x: 19.5, y: 0}
+        - {x: 46.5, y: 51}
+        - {x: 67.5, y: 134}
+        - {x: 67.5, y: 233}
     - name: PersonagemPreto.fw_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
-        width: 256
-        height: 256
+        x: 60
+        y: 258
+        width: 135
+        height: 233
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -70, y: 237}
-        - {x: -70, y: 140}
-        - {x: -68, y: 138}
-        - {x: -46, y: 53}
-        - {x: -44, y: 51}
-        - {x: -23, y: 2}
-        - {x: -21, y: 0}
-        - {x: 31, y: 0}
-        - {x: 58, y: 49}
-        - {x: 69, y: 134}
-        - {x: 69, y: 237}
+      - - {x: -67.5, y: 233}
+        - {x: -67.5, y: 134}
+        - {x: -45.5, y: 51}
+        - {x: -43.5, y: 49}
+        - {x: -22.5, y: 0}
+        - {x: 31.5, y: 0}
+        - {x: 67.5, y: 122}
+        - {x: 67.5, y: 233}
     - name: PersonagemPreto.fw_4
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
-        width: 256
-        height: 256
+        x: 319
+        y: 258
+        width: 135
+        height: 233
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 72, y: 237}
-        - {x: -67, y: 237}
-        - {x: -67, y: 140}
-        - {x: -65, y: 138}
-        - {x: -50, y: 131}
-        - {x: -45, y: 0}
-        - {x: 43, y: 0}
-        - {x: 72, y: 139}
+      - - {x: 67.5, y: 133}
+        - {x: 67.5, y: 233}
+        - {x: -67.5, y: 233}
+        - {x: -67.5, y: 136}
+        - {x: -52.5, y: 129}
+        - {x: -43.5, y: 0}
+        - {x: 40.5, y: 0}
     - name: PersonagemPreto.fw_5
       rect:
         serializedVersion: 2
-        x: 512
-        y: 256
-        width: 256
-        height: 256
+        x: 574
+        y: 258
+        width: 135
+        height: 233
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -68, y: 237}
-        - {x: -68, y: 140}
-        - {x: -66, y: 138}
-        - {x: -44, y: 53}
-        - {x: -42, y: 51}
-        - {x: -24, y: 2}
-        - {x: -22, y: 0}
-        - {x: 30, y: 0}
-        - {x: 60, y: 49}
-        - {x: 71, y: 134}
-        - {x: 71, y: 237}
+      - - {x: 60.5, y: 46}
+        - {x: 67.5, y: 127}
+        - {x: 67.5, y: 233}
+        - {x: -67.5, y: 233}
+        - {x: -67.5, y: 128}
+        - {x: -44.5, y: 47}
+        - {x: -25.5, y: 0}
+        - {x: 26.5, y: 0}
     outline: []
   spritePackingTag: 
   userData: 
