@@ -29,13 +29,13 @@ public class player : MonoBehaviour {
 	void Update () {
         keyBoardCalls();
 
-	}
+    }
 
     void keyBoardCalls()
     {
         movimentoX = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetKey(KeyCode.LeftShift)){
+        if (Input.GetKey(KeyCode.LeftShift) || (Input.GetKey(KeyCode.Z))){
             if(!parede){
                 rbPlayer.velocity = new Vector2(movimentoX * speedRunning, rbPlayer.velocity.y);
             }
@@ -101,7 +101,8 @@ public class player : MonoBehaviour {
             parede = false;
         }
 
-        if(col.gameObject.tag == "Ground")
+
+        if (col.gameObject.tag == "Ground")
         {
             isGrounded = false;
         }
