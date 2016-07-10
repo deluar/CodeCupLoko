@@ -80,6 +80,9 @@ public class player : MonoBehaviour {
 
     void jump() {
         rbPlayer.velocity = new Vector2(0, jumpForce);
+        //Vector3 theScale = transform.localScale;
+        //theScale.x *= -1;
+        //transform.localScale = theScale;
         isJumping = true;
     }
 
