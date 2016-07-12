@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
-        if(Input.GetKey(KeyCode.Return)) {
+        if(Input.GetKey(KeyCode.Return) || (Input.GetKey(KeyCode.Joystick1Button9))) {
             SceneManager.LoadScene(nome);
         }
        

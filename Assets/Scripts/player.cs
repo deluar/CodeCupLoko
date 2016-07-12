@@ -46,7 +46,8 @@ public class player : MonoBehaviour {
                 movimentoX = 1;
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) || (Input.GetKey(KeyCode.Z))){
+        if (Input.GetKey(KeyCode.LeftShift) || (Input.GetKey(KeyCode.Z)) || (Input.GetKey(KeyCode.Joystick1Button0)) || Input.GetKey(KeyCode.Joystick1Button3))
+        {
             if(!parede){
                 rbPlayer.velocity = new Vector2(movimentoX * speedRunning, rbPlayer.velocity.y);
             }
@@ -66,11 +67,21 @@ public class player : MonoBehaviour {
             Flip();
         }
 
-        if ((Input.GetKey(KeyCode.Space) || (Input.GetAxisRaw("Vertical") > 0)) && !isJumping && isGrounded)
+        if ((Input.GetKey(KeyCode.Space) || (Input.GetAxisRaw("Vertical") > 0) || (Input.GetKey(KeyCode.Joystick1Button1)) || (Input.GetKey(KeyCode.Joystick1Button2))) && !isJumping && isGrounded)
             jump();
 
         if ((collideWithWallOnRightSide && !facingRight) || (!collideWithWallOnRightSide && facingRight))
             parede = false;
+
+        //DEBUG KEYS
+        //foreach (KeyCode vKey in System.Enum.GetValues(typeof(KeyCode)))
+        //{
+        //    if (Input.GetKey(vKey))
+        //    {
+        //        print(vKey.ToString());
+
+        //    }
+        //}
     }
 
 	void Flip(){

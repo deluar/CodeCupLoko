@@ -22,7 +22,7 @@ public class fundo : MonoBehaviour {
 		preto.SetActive (!padrao);
 		branco.SetActive (padrao);
 
-		if (Input.GetKeyDown (KeyCode.X)) {
+		if (Input.GetKeyDown (KeyCode.X) || (Input.GetKeyDown(KeyCode.Joystick1Button4)) || (Input.GetKeyDown(KeyCode.Joystick1Button5))) {
 			padrao = !padrao;
 		}
 
