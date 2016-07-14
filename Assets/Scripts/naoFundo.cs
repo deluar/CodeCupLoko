@@ -6,7 +6,7 @@ public class naoFundo : MonoBehaviour {
 	private fundo 		fundo;
 	public	GameObject	preto;
 	public	GameObject	branco;
-	public	bool 		padraoOposto; // Se padraoOposto = true entao o objeto é preto. Se padraoOposto = false entao o objeto é branco!
+	private	bool 		padraoOposto; // Se padraoOposto = true entao o objeto é preto. Se padraoOposto = false entao o objeto é branco!
 
 	// Use this for initialization
 	void Start () {

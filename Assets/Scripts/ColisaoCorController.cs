@@ -7,7 +7,7 @@ public class ColisaoCorController : MonoBehaviour {
 	private fundo fundo;
 	private Rigidbody2D rigidBody;
 	public GameObject	colisor;
-    public player player;
+    private player player;
     public bool isColliding;
 
     void Start () {
