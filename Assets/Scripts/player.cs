@@ -22,15 +22,18 @@ public class player : MonoBehaviour {
         isJumping = false;
         jumpForce = 20;
         
-        speed = 6;
-        speedRunning = 10;
+        speed = 3;
+        speedRunning = 6;
 
         collideWithWallOnRightSide = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        keyBoardCalls();
+        //if (Input.GetJoystickNames().Length == 0)
+            keyBoardCalls();
+        //else
+            joystickCalls();
 
     }
 
@@ -46,28 +49,18 @@ public class player : MonoBehaviour {
                 movimentoX = 1;
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) || (Input.GetKey(KeyCode.Z)) || (Input.GetKey(KeyCode.Joystick1Button0)) || Input.GetKey(KeyCode.Joystick1Button3))
-        {
-            if(!parede){
-                rbPlayer.velocity = new Vector2(movimentoX * speedRunning, rbPlayer.velocity.y);
-            }
-        }
-        else{
-            if (!parede) {
-                rbPlayer.velocity = new Vector2(movimentoX * speed, rbPlayer.velocity.y);
-            }   
-        }
-            
+        //if (!parede){
+            if (Input.GetKey(KeyCode.LeftShift) || (Input.GetKey(KeyCode.Z)))
+                transform.Translate(new Vector3(movimentoX * speedRunning * Time.deltaTime, 0, 0));
+            else
+                transform.Translate(new Vector3(movimentoX * speed * Time.deltaTime, 0, 0));
+        //}
 
-
-        if (movimentoX > 0 && !facingRight){
-            Flip();
-        }
-        else if (movimentoX < 0 && facingRight){
+        if ((movimentoX > 0 && !facingRight) || (movimentoX < 0 && facingRight)){
             Flip();
         }
 
-        if ((Input.GetKey(KeyCode.Space) || (Input.GetAxisRaw("Vertical") > 0) || (Input.GetKey(KeyCode.Joystick1Button1)) || (Input.GetKey(KeyCode.Joystick1Button2))) && !isJumping && isGrounded)
+        if ((Input.GetKey(KeyCode.Space) || (Input.GetAxisRaw("Vertical") > 0)) && !isJumping && isGrounded)
             jump();
 
         if ((collideWithWallOnRightSide && !facingRight) || (!collideWithWallOnRightSide && facingRight))
@@ -84,7 +77,28 @@ public class player : MonoBehaviour {
         //}
     }
 
-	void Flip(){
+    void joystickCalls(){
+        movimentoX = Input.GetAxisRaw("Horizontal");
+
+        //if (!parede){
+            if (Input.GetKey(KeyCode.Joystick1Button0) || Input.GetKey(KeyCode.Joystick1Button3))
+                transform.Translate(new Vector3(movimentoX * speedRunning * Time.deltaTime, 0, 0));
+            else
+                transform.Translate(new Vector3(movimentoX * speed * Time.deltaTime, 0, 0));
+        //}
+
+        if ((movimentoX > 0 && !facingRight) || (movimentoX < 0 && facingRight)){
+            Flip();
+        }
+
+        if ((Input.GetKey(KeyCode.Joystick1Button1) || Input.GetKey(KeyCode.Joystick1Button2)) && !isJumping && isGrounded)
+            jump();
+
+        if ((collideWithWallOnRightSide && !facingRight) || (!collideWithWallOnRightSide && facingRight))
+            parede = false;
+    }
+
+    void Flip(){
         //gameObject.transform.Rotate(new Vector3(0, 180, 0));
 
         facingRight = !facingRight;
@@ -99,34 +113,26 @@ public class player : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D col){
-        print("1");
         if (col.gameObject.tag == "Ground"){
             isJumping = false;
-            print("2");
         }
 
         if(!col.isTrigger && col.gameObject.tag == "Parede"){
             parede = true;
+            collideWithWallOnRightSide = facingRight;
         }
     }
 
     void OnTriggerStay2D(Collider2D col){
         if(col.gameObject.tag == "Ground"){
             isGrounded = true;
-            collideWithWallOnRightSide = facingRight;
-        }
-
-        if (!col.isTrigger && col.gameObject.tag == "Parede")
-        {
-            parede = true;
-            collideWithWallOnRightSide = facingRight;
         }
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
 
-        if (!col.isTrigger && col.gameObject.tag != "Parede")
+        if (!col.isTrigger && col.gameObject.tag == "Parede")
         {
             parede = false;
         }

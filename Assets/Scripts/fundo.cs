@@ -18,14 +18,31 @@ public class fundo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		preto.SetActive (!padrao);
-		branco.SetActive (padrao);
-
-		if (Input.GetKeyDown (KeyCode.X) || (Input.GetKeyDown(KeyCode.Joystick1Button4)) || (Input.GetKeyDown(KeyCode.Joystick1Button5))) {
-			padrao = !padrao;
-		}
-
+        keyboardCall();
+        joystickCall();
 	
 	}
+
+    void activePatterns(bool pattern){
+        preto.SetActive(!pattern);
+        branco.SetActive(pattern);
+    }
+
+    void keyboardCall(){
+        if (Input.GetKeyDown(KeyCode.X)){
+            changePattern();
+            activePatterns(padrao);
+        }
+    }
+
+    void joystickCall(){
+        if (Input.GetKeyDown(KeyCode.Joystick1Button4) || Input.GetKeyDown(KeyCode.Joystick1Button5)){
+            changePattern();
+            activePatterns(padrao);
+        }
+    }
+
+    void changePattern(){
+        padrao = !padrao;
+    }
 }
