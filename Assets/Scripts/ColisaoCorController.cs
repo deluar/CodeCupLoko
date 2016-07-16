@@ -7,12 +7,12 @@ public class ColisaoCorController : MonoBehaviour {
 	private fundo fundo;
 	private Rigidbody2D rigidBody;
 	public GameObject	colisor;
-    private player player;
+    //private player player;
     public bool isColliding;
 
     void Start () {
 		fundo = FindObjectOfType (typeof(fundo)) as fundo;
-        player = FindObjectOfType(typeof(player)) as player;
+        //player = FindObjectOfType(typeof(player)) as player;
     }
 	
 	// Update is called once per frame

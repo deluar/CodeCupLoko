@@ -8,6 +8,7 @@ public class player : MonoBehaviour {
     public  float       speedRunning;
 	public	float 		movimentoX;
 
+    public bool         correndo; //Alteracao de JP.
     public  bool        isJumping;
     public  int         jumpForce;
     public  bool        isGrounded;
@@ -30,6 +31,7 @@ public class player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
         //if (Input.GetJoystickNames().Length == 0)
             keyBoardCalls();
         //else
@@ -50,10 +52,15 @@ public class player : MonoBehaviour {
         }
 
         //if (!parede){
-            if (Input.GetKey(KeyCode.LeftShift) || (Input.GetKey(KeyCode.Z)))
-                transform.Translate(new Vector3(movimentoX * speedRunning * Time.deltaTime, 0, 0));
-            else
-                transform.Translate(new Vector3(movimentoX * speed * Time.deltaTime, 0, 0));
+        if (Input.GetKey(KeyCode.LeftShift) || (Input.GetKey(KeyCode.Z)))
+        {
+            transform.Translate(new Vector3(movimentoX * speedRunning * Time.deltaTime, 0, 0));
+            correndo = true; //Alteracao de JP.
+        }
+        else {
+            transform.Translate(new Vector3(movimentoX * speed * Time.deltaTime, 0, 0));
+            correndo = false; //Alteracao de JP.
+        }
         //}
 
         if ((movimentoX > 0 && !facingRight) || (movimentoX < 0 && facingRight)){

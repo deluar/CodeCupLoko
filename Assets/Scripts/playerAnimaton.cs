@@ -7,11 +7,16 @@ public class playerAnimaton : MonoBehaviour {
 	private	player 		player;
 	private	bool 		walk;
     private bool        isJumping;
+    private float       velocidadeY;
+    private bool        correndo;
+    private bool        run;
 
 	// Use this for initialization
 	void Start () {
 
 		player = FindObjectOfType (typeof(player)) as player;
+        velocidadeY = player.rbPlayer.velocity.y;
+        correndo = player.correndo;
 	
 	}
 	
@@ -19,16 +24,31 @@ public class playerAnimaton : MonoBehaviour {
 	void Update () {
 
         isJumping = player.isJumping;
+        correndo = player.correndo;
 
-		if(player.movimentoX != 0){
+        if (player.movimentoX != 0 && !correndo){
 			walk = true;
+            run = false;
 		}
-		else{
+		else if(player.movimentoX != 0 && correndo)
+        {
 			walk = false;
+            run = true;
 		}
+        else
+        {
+            walk = false;
+            run = false;
+        }
 
-		anime.SetBool ("walk", walk);
+        velocidadeY = player.rbPlayer.velocity.y;
+
+        
+
+        anime.SetBool ("walk", walk);
+        anime.SetBool("correndo", run);
         anime.SetBool("isJumping", isJumping);
+        anime.SetFloat("velocidadeY", velocidadeY);
 	
 	}
 }
