@@ -19,6 +19,22 @@ public class Button : MonoBehaviour {
         isPressed = (isPressedByPlayer || isPressedByBox);
 	}
 
+    public void playerIn(){
+        isPressedByPlayer = true;
+    }
+
+    public void playerOut(){
+        isPressedByPlayer = false;
+    }
+
+    public void boxIn(){
+        isPressedByBox = true;
+    }
+
+    public void boxOut() {
+        isPressedByBox = false;
+    }
+
     void OnTriggerEnter2D(Collider2D col){
         if (col.gameObject.tag == "Personagem")
             isPressedByPlayer = true;
