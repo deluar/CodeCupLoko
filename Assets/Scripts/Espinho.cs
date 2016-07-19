@@ -14,10 +14,13 @@ public class Espinho : MonoBehaviour {
 	void Update () {
 		
 	}
+
 	void OnTriggerEnter2D(Collider2D col){
 		
 		if (col.tag == "Personagem"){
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name) ;
-		}
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name) ;
+            if (col.transform.gameObject.GetComponent<player>() != null)
+                col.transform.gameObject.GetComponent<player>().die();
+        }
 	}
 }

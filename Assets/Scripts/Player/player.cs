@@ -8,15 +8,17 @@ public class player : MonoBehaviour {
     public  float       speedRunning;
 	public	float 		movimentoX;
 
-    public bool         correndo; //Alteracao de JP.
+    public  bool         correndo; //Alteracao de JP.
     public  bool        isJumping;
     public  int         jumpForce;
     public  bool        isGrounded;
-    public bool collideWithWallOnRightSide;
+    public  bool        collideWithWallOnRightSide;
 
     public bool         parede;
-
 	public	bool 		facingRight;
+
+    private Vector3 lastCheckPoint;
+    private int lastCheckPointIndex;
 
 	// Use this for initialization
 	void Start () {
@@ -27,6 +29,8 @@ public class player : MonoBehaviour {
         speedRunning = 6;
 
         collideWithWallOnRightSide = false;
+
+        setCheckpoint(this.gameObject.transform.position, 0);
     }
 	
 	// Update is called once per frame
@@ -162,4 +166,15 @@ public class player : MonoBehaviour {
 			isGrounded = false;
 		}
 	}
+
+    public void setCheckpoint(Vector3 checkPoint, int checkPointIndex){
+        if(lastCheckPointIndex < checkPointIndex){
+            lastCheckPoint = checkPoint;
+            lastCheckPointIndex = checkPointIndex;
+        }
+    }
+
+    public void die() {
+        this.gameObject.transform.position = lastCheckPoint;
+    }
 }
