@@ -21,7 +21,7 @@ public class naoFundo : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		padraoOposto = !fundo.padrao;
+		padraoOposto = !fundo.isWhite;
 
 		preto.SetActive (!padraoOposto);
 		branco.SetActive (padraoOposto);

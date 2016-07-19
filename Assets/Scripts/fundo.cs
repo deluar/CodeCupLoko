@@ -5,7 +5,7 @@ public class fundo : MonoBehaviour {
 
 	public	GameObject	preto;
 	public	GameObject	branco;
-	public	bool 		padrao; // Se padrao = true entao o fundo é branco. Se padrao = false entao fundo é preto!
+	public	bool 		isWhite; // Se isWhite = true entao o fundo é branco. Se isWhite = false entao fundo é preto!
 
 
 	// Use this for initialization
@@ -13,7 +13,7 @@ public class fundo : MonoBehaviour {
 
 //		preto.SetActive (false);
 //		branco.SetActive (true);
-		padrao = true;
+		isWhite = true;
 	}
 	
 	// Update is called once per frame
@@ -31,18 +31,18 @@ public class fundo : MonoBehaviour {
     void keyboardCall(){
         if (Input.GetKeyDown(KeyCode.X)){
             changePattern();
-            activePatterns(padrao);
+            activePatterns(isWhite);
         }
     }
 
     void joystickCall(){
         if (Input.GetKeyDown(KeyCode.Joystick1Button4) || Input.GetKeyDown(KeyCode.Joystick1Button5)){
             changePattern();
-            activePatterns(padrao);
+            activePatterns(isWhite);
         }
     }
 
     void changePattern(){
-        padrao = !padrao;
+        isWhite = !isWhite;
     }
 }

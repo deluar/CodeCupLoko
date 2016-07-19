@@ -17,8 +17,9 @@ public class ColisaoCorController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        isColliding = ((branco && !fundo.padrao) || (!branco && fundo.padrao));
+        isColliding = ((branco && !fundo.isWhite) || (!branco && fundo.isWhite));
 		colisor.SetActive (isColliding);
+        //this.gameObject.SetActive(isColliding);
         
 	}
 }
