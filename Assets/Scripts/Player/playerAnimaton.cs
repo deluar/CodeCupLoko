@@ -15,22 +15,22 @@ public class playerAnimaton : MonoBehaviour {
 	void Start () {
 
 		player = FindObjectOfType (typeof(player)) as player;
-        velocidadeY = player.rbPlayer.velocity.y;
-        correndo = player.correndo;
+        velocidadeY = player.GetComponent<Rigidbody2D>().velocity.y;
+        correndo = player.isRunning();
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        isJumping = player.isJumping;
-        correndo = player.correndo;
+        isJumping = player.isJumping();
+        correndo = player.isRunning();
 
-        if (player.movimentoX != 0 && !correndo){
+        if (player.getMovimentoX() != 0 && !correndo){
 			walk = true;
             run = false;
 		}
-		else if(player.movimentoX != 0 && correndo)
+		else if(player.getMovimentoX() != 0 && correndo)
         {
 			walk = false;
             run = true;
@@ -41,7 +41,7 @@ public class playerAnimaton : MonoBehaviour {
             run = false;
         }
 
-        velocidadeY = player.rbPlayer.velocity.y;
+        velocidadeY = player.GetComponent<Rigidbody2D>().velocity.y;
 
         
 

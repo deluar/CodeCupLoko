@@ -3,26 +3,25 @@ using System.Collections;
 
 public class player : MonoBehaviour {
 
-	public	Rigidbody2D	rbPlayer;
-	public	float 		speed;
-    public  float       speedRunning;
-	public	float 		movimentoX;
+	private	float 		speed;
+    private float       speedRunning;
+    private  float       movimentoX;
 
-    public  bool         correndo; //Alteracao de JP.
-    public  bool        isJumping;
-    public  int         jumpForce;
-    public  bool        isGrounded;
-    public  bool        collideWithWallOnRightSide;
+    private  bool         correndo; //Alteracao de JP.
+    private  bool        jumping;
+    private  int         jumpForce;
+    private  bool        grounded;
+    private bool        collideWithWallOnRightSide;
 
-    public bool         parede;
-	public	bool 		facingRight;
+    private bool         parede;
+	private	bool 		facingRight;
 
     private Vector3 lastCheckPoint;
     private int lastCheckPointIndex;
 
 	// Use this for initialization
 	void Start () {
-        isJumping = false;
+        jumping = false;
         jumpForce = 20;
         
         speed = 3;
@@ -30,7 +29,10 @@ public class player : MonoBehaviour {
 
         collideWithWallOnRightSide = false;
 
+        lastCheckPointIndex = -1;
         setCheckpoint(this.gameObject.transform.position, 0);
+
+        facingRight = true;
     }
 	
 	// Update is called once per frame
@@ -43,9 +45,25 @@ public class player : MonoBehaviour {
 
     }
 
+    public float getMovimentoX(){
+        return movimentoX;
+    }
+
+    public bool isRunning(){
+        return correndo;
+    }
+
+    public bool isGrounded(){
+        return grounded;
+    }
+
+    public bool isJumping(){
+        return jumping;
+    }
+
     void keyBoardCalls()
     {
-        movimentoX = Input.GetAxisRaw("Horizontal");
+       movimentoX = Input.GetAxisRaw("Horizontal");
 
         //se ele tiver controlando pelo W, A, S, D
         if(movimentoX == 0){
@@ -71,7 +89,7 @@ public class player : MonoBehaviour {
             Flip();
         }
 
-        if ((Input.GetKey(KeyCode.Space) || (Input.GetAxisRaw("Vertical") > 0)) && !isJumping && isGrounded)
+        if ((Input.GetKey(KeyCode.Space) || (Input.GetAxisRaw("Vertical") > 0)) && !jumping && isGrounded())
             jump();
 
         if ((collideWithWallOnRightSide && !facingRight) || (!collideWithWallOnRightSide && facingRight))
@@ -102,7 +120,7 @@ public class player : MonoBehaviour {
             Flip();
         }
 
-        if ((Input.GetKey(KeyCode.Joystick1Button1) || Input.GetKey(KeyCode.Joystick1Button2)) && !isJumping && isGrounded)
+        if ((Input.GetKey(KeyCode.Joystick1Button1) || Input.GetKey(KeyCode.Joystick1Button2)) && !jumping && isGrounded())
             jump();
 
         if ((collideWithWallOnRightSide && !facingRight) || (!collideWithWallOnRightSide && facingRight))
@@ -119,13 +137,13 @@ public class player : MonoBehaviour {
 	}
 
     void jump() {
-        rbPlayer.velocity = new Vector2(0, jumpForce);
-        isJumping = true;
+        this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, jumpForce);
+        jumping = true;
     }
 
     void OnTriggerEnter2D(Collider2D col){
         if (col.gameObject.tag == "Ground"){
-            isJumping = false;
+            jumping = false;
         }
 
         if(!col.isTrigger && col.gameObject.tag == "Parede"){
@@ -136,7 +154,7 @@ public class player : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D col){
         if(col.gameObject.tag == "Ground"){
-            isGrounded = true;
+            grounded = true;
         }
     }
 
@@ -151,19 +169,19 @@ public class player : MonoBehaviour {
 
         if (col.gameObject.tag == "Ground")
         {
-            isGrounded = false;
+            grounded = false;
         }
     }
 
 	void OnCollisionEnter2D(Collision2D col){
 		if (col.gameObject.tag == "Ground") {
-			isGrounded = true;
+			grounded = true;
 		}
 	}
 
 	void OnCollisionExit2D(Collision2D col){
 		if (col.gameObject.tag == "Ground") {
-			isGrounded = false;
+			grounded = false;
 		}
 	}
 
