@@ -18,7 +18,8 @@ public class PlataformSlider : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.tag == "Personagem"){
+        if(col.gameObject.tag == "Personagem") // || col.gameObject.tag == "Caixa"
+        {
             col.gameObject.transform.parent = gameObject.transform;
             //gameObject.transform.SetParent(col.gameObject.transform);
         }
@@ -26,7 +27,7 @@ public class PlataformSlider : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Personagem")
+        if (col.gameObject.tag == "Personagem") // || col.gameObject.tag == "Caixa"
         {
             //gameObject.transform.SetParent(null);
             col.gameObject.transform.parent = null;
