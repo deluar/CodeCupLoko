@@ -19,6 +19,8 @@ public class player : MonoBehaviour {
     private Vector3 lastCheckPoint;
     private int lastCheckPointIndex;
 
+	private Caixa[] arrayCaixas;
+
 	// Use this for initialization
 	void Start () {
         jumping = false;
@@ -31,6 +33,8 @@ public class player : MonoBehaviour {
 
         lastCheckPointIndex = -1;
         setCheckpoint(this.gameObject.transform.position, 0);
+
+		arrayCaixas = FindObjectsOfType(typeof(Caixa)) as Caixa[];
 
         facingRight = true;
     }
@@ -194,5 +198,10 @@ public class player : MonoBehaviour {
 
     public void die() {
         this.gameObject.transform.position = lastCheckPoint;
+
+		foreach(Caixa caixa in arrayCaixas)
+		{
+			caixa.resetPosition();
+		}
     }
 }
